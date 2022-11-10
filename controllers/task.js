@@ -47,25 +47,11 @@ const updateTasks = async (req, res) => {
         res.status(500).json(error)
     }
 };
-const editTasks = async (req,res) => {
-    try {
-        const id = req.params.id
-
-        const task = await Task.findOneAndUpdate({_id:id}, req.body,{
-            new:true,runValidators:true,overwrite:true
-        })
-        if(!task) return res.status(404).send(`no task with id:${id} found`)
-        res.json({task});
-    } catch (error) {
-        res.status(500).json(error)
-    }
-}
 
 module.exports = {
   getAllTasks,
   createTasks,
   getTask,
   updateTasks,
-  deleteTasks,
-  editTasks
+  deleteTasks
 };
